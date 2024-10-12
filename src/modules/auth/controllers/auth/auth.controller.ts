@@ -1,8 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthService } from '../../services/auth/auth.service';
-import { SignInRequest } from '../../requests/sign-in.request';
-import { ApiProperty } from '@nestjs/swagger';
-import { SignUpRequest } from '../../requests/sign-up.request';
+import { SignInRequest } from '../../../../dtos/user/sign-in.request';
+import { SignUpDto, } from '../../../../dtos/user/sign-up.request';
 
 @Controller('auth')
 export class AuthController {
@@ -17,7 +16,8 @@ export class AuthController {
     }
 
     @Post("signup")
-    signUp(@Body() signupDto: SignUpRequest){
-        return "this is sign up routes";
+    @UsePipes(new ValidationPipe({ transform: true }))
+    signUp(@Body() signupDto: SignUpDto){
+        return this.authService.signUp(signupDto);
     }
 }

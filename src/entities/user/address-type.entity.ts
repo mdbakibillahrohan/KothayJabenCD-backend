@@ -29,6 +29,6 @@ export class AddressType {
   @Column()
   UpdatedBy: number;
 
-  @OneToMany(() => UserAddress, (userAddress) => userAddress.AddressType)
+  @OneToMany(() => UserAddress, (userAddress) => userAddress.AddressTypeId)
   addresses: UserAddress[];
 }

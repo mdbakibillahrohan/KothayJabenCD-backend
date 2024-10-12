@@ -19,7 +19,7 @@ export class UserAddress {
 
   @ManyToOne(() => AddressType, (addressType) => addressType.addresses)
   @JoinColumn({ name: "AddessTypeId" })
-  AddressType: AddressType;
+  AddressTypeId: number;
 
   @ManyToOne(() => Users, (user) => user.addresses)
   @JoinColumn({ name: "UserId" })

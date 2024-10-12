@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { SignUpDto } from 'src/dtos/user/sign-up.request';
 import { UserService } from 'src/modules/user/services/user/user.service';
 
 @Injectable()
@@ -18,10 +19,9 @@ export class AuthService {
             };
         }
         throw new UnauthorizedException();
-        
     }
 
-    async signUp(){
-        
+    async signUp(userInfo:SignUpDto){
+        return this.userService.createUser(userInfo);
     }
 }
